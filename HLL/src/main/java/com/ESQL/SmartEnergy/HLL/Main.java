@@ -19,7 +19,7 @@ public class Main {
         deviceService.createDeviceTable();
         energyUsageService.createEnergyUsageTable();
         alertService.createAlertTable();
-        userId = userId;
+        userId = 0;
 
         while (true) {
                 if (userId == 0) {

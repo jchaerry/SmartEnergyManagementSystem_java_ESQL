@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class AlertService {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/energy_management?useUnicode=true&characterEncoding=utf8";
     private static final String USER = "root";
-    private static final String PASSWORD = ""; // password
 
     public void createAlertTable() {
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
@@ -80,13 +79,13 @@ public class AlertService {
     }
 
     private boolean isUsedThisMonth(String usageDate) {
-        // 현재 날짜를 기준으로 한 달 전 날짜를 계산
+        // 현재 날짜를 기준으로 이번 달의 첫날을 계산
         LocalDate currentDate = LocalDate.now();
-        LocalDate oneMonthAgo = currentDate.minusMonths(1);
+        LocalDate firstDayOfMonth = currentDate.withDayOfMonth(1);
         LocalDate usageLocalDate = LocalDate.parse(usageDate);
 
-        // 사용일이 한 달 이내이면 true 반환
-        return !usageLocalDate.isBefore(oneMonthAgo);
+        // 사용일이 이번 달 내이면 true 반환
+        return !usageLocalDate.isBefore(firstDayOfMonth);
     }
 
     public void checkAndGenerateAlerts(int userId) {

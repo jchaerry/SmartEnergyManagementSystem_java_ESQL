@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class UserService {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/energy_management?useUnicode=true&characterEncoding=utf8";
     private static final String USER = "root";
-    private static final String PASSWORD = ""; // password
 
     public static int userId;
 
@@ -192,8 +191,17 @@ public class UserService {
     }
 
     public void loginUser(Scanner scanner) {
-        System.out.print("전화번호를 입력하세요 (형식: 010-xxxx-xxxx): ");
-        String phoneNumber = scanner.nextLine();
+        String phoneNumber;
+        while (true) {
+            System.out.print("전화번호를 입력하세요 (형식: 010-xxxx-xxxx): ");
+            phoneNumber = scanner.nextLine();
+
+            if (phoneNumber.matches("\\d{3}-\\d{4}-\\d{4}")) {
+                break; // 올바른 형식일 경우 반복 종료
+            } else {
+                System.out.println("전화번호 형식이 잘못되었습니다. 형식: 010-xxxx-xxxx");
+            }
+        }
 
         System.out.print("비밀번호를 입력하세요: ");
         String password = scanner.nextLine();

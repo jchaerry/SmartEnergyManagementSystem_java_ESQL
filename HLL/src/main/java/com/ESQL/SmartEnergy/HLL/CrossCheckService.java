@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class CrossCheckService {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/energy_management?useUnicode=true&characterEncoding=utf8";
     private static final String USER = "root";
-    private static final String PASSWORD = ""; // password
 
 
     public void choiceCrossCheck(Scanner scanner) {
